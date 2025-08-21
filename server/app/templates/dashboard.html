@@ -1,0 +1,379 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - EarningsCall-TLDR{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+    <!-- Hero Section -->
+    <div class="gradient-bg rounded-lg shadow-xl p-8 text-white">
+        <div class="max-w-3xl">
+            <h1 class="text-4xl font-bold mb-4">
+                Intelligent Earnings Call Analysis
+            </h1>
+            <p class="text-xl mb-6 opacity-90">
+                Transform complex earnings calls into clear, actionable insights with AI-powered analysis.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <button onclick="scrollToSection('quick-analyze')" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    🚀 Quick Analyze
+                </button>
+                <button onclick="scrollToSection('upload-section')" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                    📁 Upload Transcript
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Analyze Section -->
+    <div id="quick-analyze" class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-6">Quick Analysis</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Ticker Search -->
+            <div class="space-y-4">
+                <label class="block text-sm font-medium text-gray-700">Company Ticker</label>
+                <input type="text" id="ticker-input" placeholder="e.g., AAPL, MSFT, GOOGL" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                <button onclick="searchByTicker()" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+                    🔍 Search Company
+                </button>
+            </div>
+            
+            <!-- Manual Entry -->
+            <div class="space-y-4">
+                <label class="block text-sm font-medium text-gray-700">Period & Date</label>
+                <input type="text" id="period-input" placeholder="e.g., Q2 FY2025" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                <input type="date" id="date-input" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+            </div>
+        </div>
+        
+        <div id="search-results" class="mt-6"></div>
+    </div>
+
+    <!-- Upload Section -->
+    <div id="upload-section" class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-6">Upload Earnings Call Transcript</h2>
+        <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+            <div class="space-y-4">
+                <div class="text-6xl">📄</div>
+                <h3 class="text-lg font-medium text-gray-900">Upload your transcript</h3>
+                <p class="text-gray-500">Support for PDF, TXT, and DOCX files</p>
+                <form id="upload-form" enctype="multipart/form-data" class="space-y-4">
+                    <input type="file" id="file-input" accept=".pdf,.txt,.docx" 
+                           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" name="ticker" placeholder="Company Ticker (e.g., AAPL)" 
+                               class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <input type="text" name="period" placeholder="Period (e.g., Q2 FY2025)" 
+                               class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <button type="submit" class="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+                        📊 Analyze Transcript
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div id="upload-results" class="mt-6"></div>
+    </div>
+
+    <!-- Recent Analysis -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-6">Recent Analysis</h2>
+        <div id="recent-analysis" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Sample Analysis Card -->
+            <div class="card-hover bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg">AAPL</h3>
+                    <span class="text-green-600 font-semibold">+2.5%</span>
+                </div>
+                <p class="text-gray-600 text-sm mb-3">Q2 FY2025 Earnings Call</p>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span>Revenue:</span>
+                        <span class="font-semibold">$97.3B (+5% YoY)</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>EPS:</span>
+                        <span class="font-semibold">$1.53 (+9% YoY)</span>
+                    </div>
+                </div>
+                <button class="w-full mt-4 bg-green-600 text-white py-2 rounded text-sm font-medium hover:bg-green-700 transition-colors">
+                    View Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analysis Results Section -->
+    <div id="analysis-results" class="bg-white rounded-lg shadow-lg p-6 hidden">
+        <h2 class="text-2xl font-bold mb-6">Analysis Results</h2>
+        <div class="grid lg:grid-cols-3 gap-6">
+            <!-- Tier A - Why Stock Moved -->
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+                    <h3 class="text-xl font-bold mb-4 text-blue-900">📈 Why the Stock Moved</h3>
+                    <div id="stock-movement" class="space-y-3">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+                    <h3 class="text-xl font-bold mb-4 text-purple-900">📝 Plain English Summary</h3>
+                    <div id="summary" class="text-gray-700 leading-relaxed">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+                    <h3 class="text-xl font-bold mb-4 text-green-900">🔍 Expert Analysis</h3>
+                    <div id="expert-analysis" class="space-y-4">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Charts & Metrics -->
+            <div class="space-y-6">
+                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-lg font-bold mb-4">📊 Price Reaction</h3>
+                    <canvas id="price-chart" width="300" height="200"></canvas>
+                    <div class="mt-4 space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span>After-hours move:</span>
+                            <span id="after-hours-move" class="font-semibold text-green-600">+2.5%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Next day gap:</span>
+                            <span id="next-day-gap" class="font-semibold text-green-600">+1.8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-lg font-bold mb-4">📋 Key Metrics</h3>
+                    <div id="key-metrics" class="space-y-3">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 class="text-lg font-bold mb-4">⚠️ Risk Factors</h3>
+                    <div id="risk-factors" class="space-y-2 text-sm">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // File upload handling
+    document.getElementById('upload-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const resultsDiv = document.getElementById('upload-results');
+        
+        showLoading('upload-results');
+        
+        try {
+            const response = await fetch('/api/ingest', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                displayAnalysisResults(result);
+            } else {
+                showError('upload-results', result.detail || 'Upload failed');
+            }
+        } catch (error) {
+            showError('upload-results', 'Network error: ' + error.message);
+        }
+    });
+
+    // Ticker search functionality
+    async function searchByTicker() {
+        const ticker = document.getElementById('ticker-input').value.trim();
+        const resultsDiv = document.getElementById('search-results');
+        
+        if (!ticker) {
+            showError('search-results', 'Please enter a ticker symbol');
+            return;
+        }
+        
+        showLoading('search-results');
+        
+        try {
+            const response = await fetch(`/api/search/${ticker}`);
+            const result = await response.json();
+            
+            if (response.ok) {
+                displaySearchResults(result);
+            } else {
+                showError('search-results', result.detail || 'Search failed');
+            }
+        } catch (error) {
+            showError('search-results', 'Network error: ' + error.message);
+        }
+    }
+
+    // Display analysis results
+    function displayAnalysisResults(data) {
+        document.getElementById('analysis-results').classList.remove('hidden');
+        
+        // Stock movement analysis
+        const stockMovement = document.getElementById('stock-movement');
+        if (data.tier_a_bullets) {
+            stockMovement.innerHTML = data.tier_a_bullets.map(bullet => `
+                <div class="flex items-start gap-3">
+                    <span class="text-green-500 text-lg">${bullet.sentiment === 'positive' ? '↑' : bullet.sentiment === 'negative' ? '↓' : '→'}</span>
+                    <div>
+                        <p class="font-medium">${bullet.text}</p>
+                        <span class="text-sm text-gray-500">Confidence: ${bullet.confidence}%</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Summary
+        const summary = document.getElementById('summary');
+        if (data.tier_b_summary) {
+            summary.innerHTML = data.tier_b_summary;
+        }
+        
+        // Expert analysis
+        const expertAnalysis = document.getElementById('expert-analysis');
+        if (data.tier_c_expert) {
+            expertAnalysis.innerHTML = `
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold mb-2">Key Metrics</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            ${Object.entries(data.tier_c_expert.metrics || {}).map(([key, value]) => `
+                                <div class="flex justify-between">
+                                    <span class="capitalize">${key}:</span>
+                                    <span class="font-semibold">${value}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Key metrics
+        const keyMetrics = document.getElementById('key-metrics');
+        if (data.facts) {
+            keyMetrics.innerHTML = data.facts.map(fact => `
+                <div class="flex justify-between items-center">
+                    <span class="text-sm">${fact.metric}</span>
+                    <span class="font-semibold text-sm">${fact.value}</span>
+                </div>
+            `).join('');
+        }
+        
+        // Risk factors
+        const riskFactors = document.getElementById('risk-factors');
+        if (data.risks) {
+            riskFactors.innerHTML = data.risks.map(risk => `
+                <div class="flex items-start gap-2">
+                    <span class="text-red-500">⚠️</span>
+                    <span class="text-sm">${risk.description}</span>
+                </div>
+            `).join('');
+        }
+        
+        // Scroll to results
+        document.getElementById('analysis-results').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Display search results
+    function displaySearchResults(data) {
+        const resultsDiv = document.getElementById('search-results');
+        
+        if (data.earnings_calls && data.earnings_calls.length > 0) {
+            resultsDiv.innerHTML = `
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    ${data.earnings_calls.map(call => `
+                        <div class="card-hover bg-white border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-bold">${call.ticker}</h4>
+                                <span class="text-sm text-gray-500">${call.period}</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">${call.report_time}</p>
+                            <button onclick="loadAnalysis('${call.id}')" class="w-full bg-purple-600 text-white py-2 rounded text-sm font-medium hover:bg-purple-700 transition-colors">
+                                View Analysis
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            resultsDiv.innerHTML = `
+                <div class="text-center py-8">
+                    <p class="text-gray-500">No earnings calls found for this ticker.</p>
+                </div>
+            `;
+        }
+    }
+
+    // Load specific analysis
+    async function loadAnalysis(analysisId) {
+        showLoading('analysis-results');
+        
+        try {
+            const response = await fetch(`/api/analysis/${analysisId}`);
+            const result = await response.json();
+            
+            if (response.ok) {
+                displayAnalysisResults(result);
+            } else {
+                showError('analysis-results', result.detail || 'Failed to load analysis');
+            }
+        } catch (error) {
+            showError('analysis-results', 'Network error: ' + error.message);
+        }
+    }
+
+    // Smooth scrolling
+    function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Initialize price chart
+    const ctx = document.getElementById('price-chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Pre-Call', 'Call Start', 'Call End', 'After Hours', 'Next Day'],
+            datasets: [{
+                label: 'Stock Price',
+                data: [150, 152, 155, 158, 160],
+                borderColor: 'rgb(59, 130, 246)',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
