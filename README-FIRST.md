@@ -1,6 +1,6 @@
 # EarningsCall-TLDR: Your Complete Guide to Understanding and Building This Platform
 
-## 🎯 What This Project Actually Does (In Plain English)
+## What This Project Actually Does (In Plain English)
 
 Imagine you're an investor who just missed an important earnings call. You know it's crucial for your investment decisions, but you don't have 2 hours to listen to the entire call. What if you could get a **smart summary** that tells you exactly what matters?
 
@@ -12,17 +12,9 @@ That's exactly what this platform does. It's like having a **super-intelligent f
    - **Plain English** (What happened, explained simply)
    - **Expert analysis** (Deep dive for serious investors)
 
-## 🏗️ How It Works (The "Magic" Explained Simply)
+## How It Works
 
-### The Basic Process (Like Making Coffee)
-
-Think of this like a sophisticated coffee machine:
-
-1. **Input**: You upload an earnings call transcript (like putting coffee beans in)
-2. **Processing**: The system breaks it down, analyzes it, and finds the important parts (like grinding and brewing)
-3. **Output**: You get a beautiful, structured analysis (like getting a perfect cup of coffee)
-
-### The Technology Behind It (Simplified)
+### The Technology Behind It
 
 **RAG (Retrieval Augmented Generation)** - This is the "brain" of the system. Think of it like having a super-smart assistant who:
 - **Remembers** everything they've read
@@ -31,12 +23,12 @@ Think of this like a sophisticated coffee machine:
 
 **NLP (Natural Language Processing)** - This is how the computer "understands" human language. It's like teaching a computer to read and comprehend text the way humans do.
 
-## 📊 Current State: What's Already Built
+## Current State: What's Already Built
 
-### ✅ What's Working Right Now
+### What's Working Right Now
 
 **The Foundation (100% Complete)**
-- **Web Interface**: A beautiful, professional website at http://127.0.0.1:8000
+- **Web Interface**: A somewhat professional website at http://127.0.0.1:8000
 - **File Upload**: You can upload earnings call transcripts (PDF, TXT, DOCX)
 - **Analysis Engine**: The system processes and analyzes the content
 - **Market Data Integration**: Connects to Yahoo Finance for real-time stock data
@@ -48,7 +40,7 @@ Think of this like a sophisticated coffee machine:
 - **Multi-tier Analysis**: Creates three levels of insights
 - **Market Context**: Combines transcript analysis with market data
 
-### 🎨 The User Experience (What You Actually See)
+### The User Experience (What You Actually See)
 
 When you visit the website, you see:
 1. **Hero Section**: Clear explanation of what the tool does
@@ -57,7 +49,7 @@ When you visit the website, you see:
 4. **Results Display**: Beautiful, organized analysis results
 5. **Export Options**: Download PDF reports
 
-## 🚀 The Revolutionary Vision: What Makes This Special
+## The Revolutionary Vision: What Makes This Special
 
 ### Why This Is Different From Everything Else
 
@@ -72,7 +64,7 @@ When you visit the website, you see:
 - **Actionable Insights**: Focus on what actually moves stock prices
 - **Professional Output**: Ready-to-use reports for presentations and decisions
 
-## 🔮 Future Vision: The Disruptive Features
+## Future Vision: The Disruptive Features
 
 ### 1. Web Scraping & Social Sentiment Analysis
 
@@ -140,7 +132,7 @@ When you visit the website, you see:
 - **Portfolio Integration**: Analyze calls in the context of your specific holdings
 - **Risk Tolerance**: Adjust analysis based on your risk preferences
 
-## 🛠️ Technical Architecture (For the Curious)
+## Technical Architecture (For the Curious)
 
 ### The Building Blocks
 
@@ -166,9 +158,9 @@ When you visit the website, you see:
 3. **Enrichment**: Market data added → Context provided
 4. **Output**: Beautiful report created → User downloads/views
 
-## 🎯 Immediate Actionable Steps for Your Friend
+## Immediate Actionable Steps
 
-### Phase 1: Understanding the Current System (Week 1)
+### Phase 1: Understanding the Current System
 
 **Step 1: Get the System Running**
 ```bash
@@ -195,7 +187,7 @@ python main.py
 - Look at `server/app/templates/` - This is the user interface
 - Look at `docs/future_features/` - This is the roadmap
 
-### Phase 2: Learning the Development Process (Week 2)
+### Phase 2: Learning the Development Process
 
 **Step 1: Understand Prompt Engineering**
 - The system uses AI prompts to analyze earnings calls
@@ -212,7 +204,7 @@ python main.py
 - Modify the analysis prompts to get different insights
 - Test the market data integration with different tickers
 
-### Phase 3: Building New Features (Week 3+)
+### Phase 3: Building New Features
 
 **Option A: Start with Web Scraping**
 - Begin with Reddit sentiment analysis (easiest to implement)
@@ -229,7 +221,7 @@ python main.py
 - Create better report templates
 - Improve the user experience
 
-## 🎓 Learning Strategy for Non-Coders
+## Learning Strategy for Non-Coders
 
 ### The "Prompt Engineering" Approach
 
@@ -256,7 +248,7 @@ Since you're already good at prompt engineering, use that skill to:
 - How to make complex data accessible
 - How to create professional outputs
 
-## 🚀 The Big Picture: Why This Matters
+## The Big Picture: Why This Matters
 
 ### Market Opportunity
 
@@ -285,31 +277,31 @@ Since you're already good at prompt engineering, use that skill to:
 **Analysts**: More efficient research processes
 **Media**: Better financial reporting
 
-## 🎯 Next Steps: Your Development Roadmap
+## Next Steps: Your Development Roadmap
 
-### Immediate (This Week)
+### Immediate
 1. **Get the system running** and explore all features
 2. **Read the vision documents** in `docs/future_features/`
 3. **Identify one feature** you want to build first
 
-### Short-term (Next 2-4 Weeks)
+### Short-term
 1. **Choose your first enhancement** (web scraping, improved analysis, or UI improvements)
 2. **Use Cursor to help you code** - don't worry about being perfect
 3. **Test and iterate** - focus on getting something working
 
-### Medium-term (Next 2-3 Months)
+### Medium-term
 1. **Build out the web scraping features**
 2. **Enhance the AI analysis capabilities**
 3. **Improve the user interface and experience**
 4. **Add more market data sources**
 
-### Long-term (6+ Months)
+### Long-term
 1. **Real-time analysis capabilities**
 2. **Predictive analytics features**
 3. **Advanced personalization**
 4. **Commercial deployment**
 
-## 💡 Pro Tips for Success
+## Pro Tips for Success
 
 **1. Start Small**: Don't try to build everything at once. Pick one feature and master it.
 
@@ -323,16 +315,16 @@ Since you're already good at prompt engineering, use that skill to:
 
 **6. Network**: Connect with other developers and financial professionals for insights.
 
-## 🎉 You're Ready to Build Something Amazing!
+## You're Ready to Build Something Amazing!
 
 This platform has the potential to revolutionize how people analyze earnings calls. You have:
-- ✅ A solid foundation that's already working
-- ✅ A clear vision for future enhancements
-- ✅ The tools and resources to build it
-- ✅ A market that needs this solution
+- A solid foundation that's already working
+- A clear vision for future enhancements
+- The tools and resources to build it
+- A market that needs this solution
 
 The key is to start building and keep iterating. Every improvement you make will make the tool more valuable and more powerful.
 
 **Remember**: You don't need to be a coding expert to build amazing things. You just need to be able to articulate what you want and use the right tools to make it happen.
 
-Good luck, and happy building! 🚀
+Good luck, and happy building!
