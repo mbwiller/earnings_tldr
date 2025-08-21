@@ -2,7 +2,7 @@
 
 An intelligent earnings call analysis platform that transforms complex earnings calls into clear, actionable insights using AI-powered analysis.
 
-## 🚀 Features
+## Features
 
 ### Core Analysis
 - **Tier A Analysis**: "Why the Stock Moved" - 4-8 high-level bullets ranked by likely contribution to post-earnings price reaction
@@ -22,7 +22,7 @@ An intelligent earnings call analysis platform that transforms complex earnings 
 - Alpha Vantage integration (skeleton ready)
 - Sample data for testing
 
-## 🏗️ Architecture
+## Architecture
 
 ### Backend (FastAPI)
 ```
@@ -48,7 +48,7 @@ server/
 - **JavaScript**: Interactive charts and real-time updates
 - **Responsive Design**: Mobile-friendly interface
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Python 3.8+
@@ -87,7 +87,7 @@ server/
    - Upload an earnings call transcript
    - View the comprehensive analysis
 
-## 📊 Usage
+## Usage
 
 ### Upload Transcript
 1. Navigate to the upload section
@@ -112,7 +112,7 @@ The analysis provides three tiers of insights:
 - Include charts, metrics, and comprehensive analysis
 - Professional formatting for presentations
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 ```bash
@@ -138,7 +138,7 @@ CHUNK_OVERLAP=100        # Overlap between chunks
 TOP_K_RETRIEVAL=5        # Number of chunks to retrieve
 ```
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 ### Planned Features
 - **Web Scraping**: Social media sentiment analysis
@@ -153,7 +153,7 @@ TOP_K_RETRIEVAL=5        # Number of chunks to retrieve
 - **Monitoring**: Prometheus/Grafana dashboards
 - **Scalability**: Microservices architecture
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 earnings-call-tldr/
@@ -177,7 +177,7 @@ earnings-call-tldr/
 └── web/                 # Frontend (Next.js - future)
 ```
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -185,21 +185,17 @@ earnings-call-tldr/
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This tool is for informational purposes only and should not be considered as investment advice. Always conduct your own research and consult with financial professionals before making investment decisions.
 
-## 🆘 Support
+## Support
 
 For support and questions:
 - Create an issue in the repository
 - Check the documentation in the `docs/` folder
 - Review the vision documents for future features
-
----
-
-**Built with ❤️ using FastAPI, OpenAI, and modern web technologies**
